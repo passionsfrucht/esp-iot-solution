@@ -83,7 +83,7 @@ static esp_err_t light_channel_delete(light_channel_t* light_channel)
     return ESP_OK;
 }
 
-light_handle_t iot_light_create(ledc_timer_t timer, ledc_mode_t speed_mode, uint32_t freq_hz, uint8_t channel_num, ledc_timer_bit_t timer_bit) 
+light_handle_t iot_light_create(ledc_timer_t timer, ledc_mode_t speed_mode, uint32_t freq_hz, uint8_t channel_num, ledc_timer_bit_t timer_bit)
 {
     IOT_CHECK(TAG, channel_num != 0, NULL);
     ledc_timer_config_t timer_conf = {
@@ -132,7 +132,7 @@ esp_err_t iot_light_delete(light_handle_t light_handle)
             goto FREE_MEM;
         }
     }
-    ledc_fade_func_uninstall(0);
+    ledc_fade_func_uninstall();
     g_fade_installed = false;
 FREE_MEM:
     free(light_handle);
